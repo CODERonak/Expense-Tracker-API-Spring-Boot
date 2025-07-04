@@ -9,4 +9,6 @@ import com.code.ExpenseTrackerAPI.entity.Users;
 public interface UserRepository extends JpaRepository<Users, Long> {
     // This method finds the user by username
     Users findByUsername(String username);
+    // This method finds the user by email
+    Users findByEmail(String email);
 }
