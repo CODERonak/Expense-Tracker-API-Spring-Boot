@@ -1,12 +1,9 @@
 package com.code.ExpenseTrackerAPI.exceptions.handler;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
-import com.code.ExpenseTrackerAPI.exceptions.custom.UsernameAlreadyExistsException;
-import com.code.ExpenseTrackerAPI.exceptions.custom.EmailAlreadyExistsException;
+import com.code.ExpenseTrackerAPI.exceptions.custom.*;
 import com.code.ExpenseTrackerAPI.exceptions.payload.ErrorResponse;
 
 // This controller handles the exceptions
@@ -36,4 +33,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
 
+    // This method handles the InvalidCredentialsException
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredentials(InvalidCredentialsException ex) {
+        // This creates a new error response
+        // and returns it
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.UNAUTHORIZED.value(),
+                HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+    }
 }

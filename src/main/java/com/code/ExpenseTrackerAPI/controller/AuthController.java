@@ -1,7 +1,6 @@
 package com.code.ExpenseTrackerAPI.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.code.ExpenseTrackerAPI.entity.Users;
@@ -26,10 +25,11 @@ public class AuthController {
     }
 
     // This method logs in a user
-    // login is automatic in the spring security  
-    // so this method wlll just show the message
+    // login is automatic in the spring security 
+    // so this method wlll just show the message plus handle the exception
     @PostMapping("/login")
-    public ResponseEntity<String> login() {
+    public ResponseEntity<String> login(@RequestBody Users user) {
+        authService.LoginUser(user);
         return ResponseEntity.ok("User logged in successfully!");
     }
 }
