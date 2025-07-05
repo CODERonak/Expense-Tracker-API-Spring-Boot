@@ -4,6 +4,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.code.ExpenseTrackerAPI.entity.Users;
+import com.code.ExpenseTrackerAPI.exceptions.custom.EmailAlreadyExistsException;
+import com.code.ExpenseTrackerAPI.exceptions.custom.UsernameAlreadyExistsException;
 import com.code.ExpenseTrackerAPI.repository.UserRepository;
 
 @Service
@@ -23,12 +25,12 @@ public class AuthService {
     public void registerUser(Users user) {
         // this checks if the username or email already exists
         if (userRepository.findByUsername(user.getUsername()) != null) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new UsernameAlreadyExistsException("Username already exists");
         }
 
         // this checks if the email already exists
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new IllegalArgumentException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists");
         }
 
         // this encodes the password
