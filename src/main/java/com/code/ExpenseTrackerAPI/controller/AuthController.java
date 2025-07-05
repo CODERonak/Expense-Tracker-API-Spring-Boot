@@ -24,4 +24,12 @@ public class AuthController {
         // This returns a success message
         return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
     }
+
+    // This method logs in a user
+    // login is automatic in the spring security  
+    // so this method wlll just show the message
+    @PostMapping("/login")
+    public ResponseEntity<String> login() {
+        return ResponseEntity.ok("User logged in successfully!");
+    }
 }
