@@ -25,6 +25,7 @@ public class SecurityConfig {
         // alowing the register, login and the test page without any authentication
         http.authorizeHttpRequests(requests -> requests
         .requestMatchers("/register", "/login", "/test").permitAll()
+        .requestMatchers("/category/**").hasRole("USER")
         .anyRequest().authenticated())
         
         // enabling the basic authentication
