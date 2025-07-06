@@ -30,4 +30,19 @@ public class CategoryController {
         List<Category> categories = categoryService.listAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
+
+    // This method updates the category by id
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+        categoryService.updateCategory(id, category);
+        return new ResponseEntity<>("Category updated successfully", HttpStatus.OK);
+    }
+
+    // This method deletes the category by id
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
+        return new ResponseEntity<>("Category deleted successfully", HttpStatus.NO_CONTENT);
+    }
+
 }
