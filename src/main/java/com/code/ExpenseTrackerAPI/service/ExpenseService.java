@@ -11,6 +11,7 @@ import com.code.ExpenseTrackerAPI.repository.*;
 
 @Service
 public class ExpenseService {
+    // This service handles the expenses
     private final ExpenseRepository expenseRepository;
     private final UserRepository userRepository;
 
@@ -19,6 +20,7 @@ public class ExpenseService {
         this.userRepository = userRepository;
     }
 
+    // This method gets the current user
     private Users getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -27,6 +29,7 @@ public class ExpenseService {
 
     // This method creates a new expense
     public void createExpense(Expense expense) {
+        // This gets the current user
         Users user = getCurrentUser();
         expense.setUser(user);
         expenseRepository.save(expense);
@@ -34,6 +37,7 @@ public class ExpenseService {
 
     // This method lists all the expenses
     public List<Expense> listAllExpenses() {
+        // This gets the current user
         Users user = getCurrentUser();
         return expenseRepository.findByUser(user);
     }
