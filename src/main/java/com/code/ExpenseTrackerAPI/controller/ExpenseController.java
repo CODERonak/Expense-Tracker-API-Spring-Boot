@@ -31,4 +31,17 @@ public class ExpenseController {
         return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
 
+    // This method updates the category by id
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
+        expenseService.updateExpense(id, expense);
+        return new ResponseEntity<>("Expense updated successfully", HttpStatus.OK);
+    }
+
+    // this method deletes the expense by id
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteExpense(@PathVariable Long id) {
+        expenseService.deleteExpense(id);
+        return new ResponseEntity<>("Expense deleted successfully", HttpStatus.NO_CONTENT);
+    }
 }

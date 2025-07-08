@@ -41,4 +41,18 @@ public class ExpenseService {
         Users user = getCurrentUser();
         return expenseRepository.findByUser(user);
     }
+
+    // This method updates the expense by id
+    public void updateExpense(Long id, Expense expense) {
+        // This gets the current user
+        Users user = getCurrentUser();
+        expense.setId(id);
+        expense.setUser(user);
+        expenseRepository.save(expense);
+    }
+
+    // This method deletes the expense by id
+    public void deleteExpense(Long id) {
+        expenseRepository.deleteById(id);
+    }
 }
