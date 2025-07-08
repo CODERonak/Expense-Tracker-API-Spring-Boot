@@ -18,6 +18,9 @@ public class CategoryService {
 
     // This method creates a new category
     public void createCategory(Category category) {
+        if (category.getId() != null)
+            throw new IllegalArgumentException("Id must not be provided");
+
         categoryRepository.save(category);
     }
 
@@ -28,6 +31,9 @@ public class CategoryService {
 
     // This method updates the category by id
     public void updateCategory(Long id, Category category) {
+        if (id != category.getId())
+            throw new IllegalArgumentException("Id does not match");
+
         category.setId(id);
         categoryRepository.save(category);
     }
