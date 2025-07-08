@@ -1,65 +1,75 @@
-💸 Expense Tracker API (Spring Boot)
-A secure, role-based REST API for tracking personal expense, built using Spring Boot. This project supports basic user authentication, expense and category management. 
+# 💸 Expense Tracker API (Spring Boot)
 
-It's the last beginner level project. Next one is foing to be a intermediate level. 
+A secure, role-based REST API for tracking personal expenses, built with **Spring Boot**. This project supports basic user authentication, and expense and category management.
 
-Also as it'a beginner level project i might be missing few features
+> 🧑‍💻 This is my **last beginner-level project**. The next one will be **intermediate-level**.
+> ⚠️ As a beginner project, some features might be missing or simplified.
 
-✅ Features
-User registration & login
+---
 
-Manage expenses and categories
+## ✅ Features
 
-Secure endpoints using Spring Security
+* User registration and login
+* Manage expenses and categories
+* Secure endpoints using Spring Security
+* MySQL for data persistence
 
-Using MySql Database
+---
 
-Project structure -
+## 📁 Project Structure
 
+```
 src/
 └── main/
     ├── java/
     │   └── com.example.expensetracker/
-    │       ├── controller/      
-    │       ├── entity/         
-    │       ├── repository/     
-    │       ├── service/        
-    │       └── config/          
+    │       ├── controller/      # REST controllers
+    │       ├── entity/          # JPA entities
+    │       ├── repository/      # Spring Data JPA repositories
+    │       ├── service/         # Business logic
+    │       └── config/          # Spring Security and other configurations
     └── resources/
         └── application.properties
+```
 
+---
 
-🔧 Technologies Used
-Java 17+
+## 🔧 Technologies Used
 
-Spring Boot
+* Java 17+
+* Spring Boot
+* Spring Web
+* Spring Security
+* Spring Data JPA
+* MySQL
+* Lombok
+* Spring Boot DevTools
 
-Spring Web
+---
 
-Spring Security
+## 🌐 API Endpoints
 
-Spring Data JPA
+### 🔐 AuthController
 
-MySQL
+| Method | Endpoint    | Description       |
+| ------ | ----------- | ----------------- |
+| POST   | `/register` | Register new user |
+| POST   | `/login`    | Login user        |
 
-Lombok
+### 📁 CategoryController
 
-Spring Boot DevTools
+| Method | Endpoint         | Description         |
+| ------ | ---------------- | ------------------- |
+| GET    | `/category`      | Get all categories  |
+| POST   | `/category`      | Create new category |
+| PUT    | `/category/{id}` | Update category     |
+| DELETE | `/category/{id}` | Delete category     |
 
-🌐 API Endpoints
+### 💰 ExpenseController
 
-AuthController
-POST /register	Register new user
-POST /login	    Login 
-
-CategoryController
-GET	/category	Get all category
-POST	/category	Create new category
-PUT	/category/{id}	Update category
-DELETE	/category/{id}	Delete category
-
-ExpenseController
-GET	/expense	Get all expenses for user
-POST /expense	Create new expense
-PUT	/expense/{id}	Update expense
-DELETE	/expense/{id}	Delete expense
+| Method | Endpoint        | Description           |
+| ------ | --------------- | --------------------- |
+| GET    | `/expense`      | Get all user expenses |
+| POST   | `/expense`      | Create new expense    |
+| PUT    | `/expense/{id}` | Update expense        |
+| DELETE | `/expense/{id}` | Delete expense        |
